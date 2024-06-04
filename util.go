@@ -89,10 +89,10 @@ var CRC_CCITT_table = []uint16{
 }
 
 // generateCRC16Code generates the CRC16 code for a given command.
-func generateCRC16Code(command string) (string, error) {
+func generateCRC16Code(command string) string {
 	buffer, err := hex.DecodeString(command)
 	if err != nil {
-		return "", err
+		return ""
 	}
 
 	var wCRC uint16
@@ -100,7 +100,7 @@ func generateCRC16Code(command string) (string, error) {
 		wCRC = (wCRC << 8) ^ CRC_CCITT_table[((wCRC>>8)^uint16(chChar))&0xff]
 	}
 
-	return fmt.Sprintf("%04x", wCRC), nil
+	return fmt.Sprintf("%04x", wCRC)
 }
 
 // 解析RFID报告数据
