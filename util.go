@@ -91,7 +91,6 @@ var CRC_CCITT_table = []uint16{
 // generateCRC16Code generates the CRC16 code for a given command.
 func generateCRC16Code(command string) string {
 	buffer, err := hex.DecodeString(command)
-	fmt.Printf("%v", string(buffer))
 
 	if err != nil {
 		return ""
