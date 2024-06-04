@@ -47,10 +47,12 @@ func startRfid() {
 	command := []byte(COMMAND_START + commandBody + checkCode)
 
 	port.Write(command)
+
+	fmt.Printf("Start Rfid\n")
 }
 
 func stopRfid() {
 	port.Write([]byte{0x5A, 0x00, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0xEB, 0xD5})
 
-	fmt.Printf("Wrote bytes\n")
+	fmt.Printf("Stop Rfid\n")
 }
