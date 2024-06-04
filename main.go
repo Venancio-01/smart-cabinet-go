@@ -3,10 +3,10 @@ package main
 import "time"
 
 func main() {
-	go initializeRfid()
-	
+	initializeRfid()
 	startRfid()
-	// 如何过五秒之后停止rfid
+	go openRfidListener()
+	
 	time.Sleep(5 * time.Second)
 	stopRfid()
 }

@@ -14,11 +14,14 @@ func initializeRfid() {
 		BaudRate: 115200,
 	}
 
-	port, err := serial.Open("/dev/ttyS3", mode)
+	var err error
+	port, err = serial.Open("/dev/ttyS3", mode)
 	if err != nil {
 		log.Fatal(err)
 	}
+}
 
+func openRfidListener() {
 	buff := make([]byte, 100)
 	for {
 		n, err := port.Read(buff)
