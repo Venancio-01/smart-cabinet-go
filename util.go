@@ -17,14 +17,23 @@ func generateBinaryString(numbers []int) string {
 	}
 
 	for _, num := range numbers {
-		binaryArray[num-1] = "1"
+		if num > 0 && num <= size { // 确保数字在有效范围内
+			binaryArray[num-1] = "1"
+		}
 	}
 
-	binaryString := []string(nil)
+	binaryString := strings.Join(binaryArray, "")
 
-	binaryString = append(binaryString, binaryArray...)
+	// 反转字符串
+	runes := []rune(binaryString)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
 
-	return strings.Join(binaryString, "")
+	// 将rune切片转换回字符串
+	reversedBinaryString := string(runes)
+
+	return reversedBinaryString
 }
 
 // Convert binary string to hexadecimal string
