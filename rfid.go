@@ -45,6 +45,8 @@ func startRfid() {
 	commandBody := "000102100008" + generateAntennaCommand() + "01020006"
 	checkCode := generateCRC16Code(commandBody)
 	command := []byte(COMMAND_START + commandBody + checkCode)
+	
+	fmt.Println(string(command))
 
 	port.Write(command)
 
