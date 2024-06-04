@@ -43,7 +43,6 @@ func startRfid() {
 	const COMMAND_START = "5A"
 
 	commandBody := "000102100008" + generateAntennaCommand() + "01020006"
-	fmt.Println(commandBody)
 	checkCode := generateCRC16Code(commandBody)
 	command := []byte(COMMAND_START + commandBody + checkCode)
 
