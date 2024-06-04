@@ -31,7 +31,19 @@ func initializeRfid() {
 			break
 		}
 		fmt.Printf("%v", string(buff[:n]))
+
+		messageQueue.Push(string(buff[:n]))
 	}
+}
+
+func startRfid() {
+	const COMMAND_START = "5A"
+
+	commandBody := "000102100008" + generateAntennaCommand() + "01020006"
+	checkCode := generateCRC16Code(commandBody)
+	command := []byte(COMMAND_START + commandBody + checkCode)
+
+	port.Write(command)
 }
 
 func stopRfid() {
